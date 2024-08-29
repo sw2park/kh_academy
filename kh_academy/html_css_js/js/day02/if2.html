@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        var point = 70;
+        /*
+            point가 90점 초과 이고, 100점 이하
+            -> A 학점 입니다.
+            point가 80점 초과 이고, 90점 이하
+            -> B 학점 입니다.
+            point가 70점 초과 이고, 80점 이하
+            -> C 학점 입니다.
+            그 외 -> F 학점 입니다.
+        */
+       /*
+       if(point > 90 && point <= 100){
+           document.write("A 학점입니다.");
+       } else if(point > 80 && point <= 90){
+           document.write("B 학점입니다.");
+       } else if(point > 70 && point <= 80){
+           document.write("C 학점입니다.");
+       } else {
+           document.write("F 학점입니다.");
+       }
+       */
+        var grade = null;
+
+        if(point > 90 && point <= 100){
+            grade = 'A';
+        } else if(point > 80 && point <= 90){
+            grade = 'B';
+        } else if(point > 70 && point <= 80){
+            grade = 'C';
+        } else {
+            grade = 'F';
+        }
+        
+        var msg = "<h1>" + grade + "학점 입니다.</h1>";
+        document.write(msg);
+    </script>
+</body>
+</html>

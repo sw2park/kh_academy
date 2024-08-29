@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        #container{
+            width: 800px;
+            border: 5px dotted dodgerblue;
+            padding: 10px;
+            margin: auto;
+        }
+        #container div{ width: 200px; height: 200px; float: left; }
+        .clear::after{
+            content: '';
+            display: block;
+            float: none;
+            clear: both;
+        }
+        div#box1{background-color: orange;}
+        div#box2{background-color: powderblue;}
+        div#box3{background-color: dodgerblue;}
+        div#box4{background-color: blueviolet;}
+        div#box5{background-color: crimson;}
+    </style>
+</head>
+<body>
+    <div id="container" class="clear">
+        <div id="box1">박스1</div>
+        <div id="box2">박스2</div>
+        <div id="box3">박스3</div>
+        <div id="box4">박스4</div>
+        <div id="box5">박스5</div>
+    </div>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        const person = {
+            name    : "psw",
+            age     : 26
+        };
+        person.location = "한국";
+        person["gender"] = "여성";
+
+        person.name = "psw123";
+
+        // const는 객체 자체를 수정할 때 오류 발생
+        // TypeError: Assignment to constant variable.
+        person = {
+            age     : 20
+        };
+        
+    </script>
+</body>
+</html>
