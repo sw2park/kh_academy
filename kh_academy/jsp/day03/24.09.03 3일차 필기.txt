@@ -1,0 +1,71 @@
+1. 상태유지 필요성
+ 1-1. application
+   - 하나의 application이 생성되고 소멸될 때까지 계속 유지된다.
+ 1-2. session
+   - 하나의 웹 브라우저의 정보를 유지하기 위한 세션 정보를 저장
+   - 브라우저 종료 시 종료, 클라이언트 로그인 정보
+   - 브라우저마다 한 개씩 존재하고, 고유한 sessionID 생성 후 정보를 추출
+   - 저장 용량의 제한이 없다.
+   - 사용자의 브라우저가 종료되는 시점에 세션도 제거 된다.
+   - 세션에 값 저장
+	session.setAttribute("key", value);
+	session.setAttribute("id", "admin");
+   - 세션에 저장된 값 가져오기
+	session.getAttribute("id");
+   - 세션에 저장된 값을 삭제
+	session.removeAttribute("id");
+	session.invalidate(); // 세선값 전체 제거 
+ 1-3. cookie
+   - 웹 브라우저가 보관하고 있는 데이터로, 웹 서버에 요청을 보낼 때 쿠키를 헤더에 담아서 전송한다. 
+   - 클라이언트의 일정 폴더에 정보를 저장하기 때문에 서버의 부하를 줄일 수 있다.
+   - 정보가 사용자 컴퓨터에 저장되기 때문에 보안에 위협을 받을 수 있다.
+   - 데이터 저장 용량에 제한이 있다. 과자 부스러기처럼 작은 값을 저장한다.
+   - 일반 사용자가 브라우저 내의 기능인 "쿠키차단"을 사용하면 무용지물
+   - 쿠키를 생성하고, response(응답)에 객체를 담는다.
+	Cookie cookie = new Cookie("쿠키이름", "쿠키값");
+	response객체.addCookie(cookie);
+   - 쿠키 유무를 확인 후 쿠키값을 받아온다.
+	String check = request객체.getHeader("Cookie");
+	if(check != null) {
+		Cookie[] cookies = request.getCookies();
+	}
+
+2. 서버에서 페이지 전환
+ - redirect
+
+3. jsp란
+ 3-1. jsp란 무엇인가?
+   - JavaServerPages
+   - HTML코드에 Java코드를 넣어 동적 웹페이지를 생성하는 웹 어플리케이션 도구이다.
+   - jsp가 실행되면 자바 서블릿으로 변환되며 웹 어플리케이션 서버에서 동작되면서 필요한 기능을 수행하고 
+     그렇게 생성된 데이터를 웹페이지와 함께 클라이언트로 응답
+   - 서블릿 기반의 '서버 스크립트 기술'
+   - HTML + Java = jsp
+   - HTML을 중심으로 Java와 연동하여 사용하는 웹 언어이다.
+
+4. 스크립트 태그
+ - HTML 코드에 자바 코드를 넣어 프로그램이 수행할 기능을 구현할 수 있다. 
+
+5. jsp 내장 객체
+ 5-1. jsp 내장 객체
+   - jsp 페이지 내에서 제공되는 특수한 클래스 형의 객체
+   - 내장 객체는 선언과 할당 없이 사용할 수 있다. 
+   - jsp페이지가 java클래스 형태로 변환될 때, jsp에서 java클래스안에 자동으로 포함
+ 5-2. 내장 객체 종류
+   - request
+    : HttpServletRequest
+     웹 브라우저의 요청 정보를 저장하고 있는 객체
+   - response
+    : HttpServletResponse
+     웹 브라우저의 요청에 대한 응답 정보를 저장하고 있는 객체
+   - out
+    : jspWriter
+     jsp 페이지에 출력할 내용을 가지고 있는 출력 스트림 객체이다.
+   - session
+    : HttpSession
+     하나의 웹 브라우저의 정보를 유지하기 위한 세션 정보를 저장하고 있는 객체
+   - application
+   - pageContext
+   - page
+   - config
+   - exception

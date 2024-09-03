@@ -1,0 +1,12 @@
+1. String
+day11 > src > string > Main01~06 내 확인
+
+2. 정규표현식
+ 2-1. 정규표현식이란?
+   - 정규표현식(Regular expression)은 특정한 규칙을 가진 문자열의 집합을 표현하는데 사용하는 '형식 언어'이다.
+   - 정규표현식은 많은 텍스트 편집기와 프로그래밍 언어에서 '문자열의 검색과 치환'을 위해 지원하고 있다.
+ 2-2. 정규표현식의 사용
+    boolean java.util.regex.Pattern.matches(String arg0, CharSequence arg1);
+   - arg0 : 정규표현식 문자열
+   - arg1 : 형식을 검사받기 위한 내용
+   - https://hamait.tistory.com/342 해당블로그 참고 

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        function cry() {
+            console.log("Action : Cry");
+        }
+        function sing() {
+            console.log("Action : Sing");
+        }
+        function checkMood(mood) {
+            if(mood == 'good'){
+                sing();
+            } else {
+                cry();
+            }
+        }
+        checkMood('good');
+    </script>
+</body>
+</html>

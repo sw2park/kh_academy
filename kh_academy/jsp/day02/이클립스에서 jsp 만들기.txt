@@ -1,0 +1,10 @@
+jsp
+이클립스에서 jsp 만들기
+Project Explorer 우클릭 -> new -> Dynamic Web Project -> Project name 설정 -> next -> next -> Generate web.xml 체크 -> finish
+Server 우클릭 -> new -> server -> Apache v10.1 선택 -> Server Name 설정 -> next -> 생성한 프로젝트 선택 후 Add -> finish
+생성한 서버 더블클릭 -> Port Number에서 HTTP/1.1 설정 (8081) -> Modules -> 생성한 Path -> Edit -> Path /로 설정 후 OK -> Ctrl+S로 세이브
+day01 폴더 내 WEB-INF/lib/servlet-api.jar 라이브러리 복사 -> 오늘 생성 폴더에 
+오늘 생성 폴더 properties -> Java Build Path -> Libraries -> Classpath -> Add JARs -> day03 -> WEB-INF/lib/servlet-api.jar 선택 후 OK -> Apply -> Apply and Close
+오늘 생성 폴더 webapp 우클릭 -> index.html 생성 -> Servers 오늘 생성한 서버 우클릭 후 실행 -> 크롬에서 localhost:8081로 실행
+
+day02 폴더 내 com.kh.web.filter 패키지 복붙
