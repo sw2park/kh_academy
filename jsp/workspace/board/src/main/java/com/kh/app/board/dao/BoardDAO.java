@@ -31,4 +31,34 @@ public class BoardDAO {
 	public int getBoardCnt() {
 		return session.selectOne("Board.getBoardCnt");
 	}
+
+	public boolean insertBoard(BoardDTO board) {
+		boolean result = false;
+		
+		if(session.insert("Board.insertBoard", board) == 1 ) {
+			result = true;
+		}
+		return result;
+	}
+
+	public BoardDTO getDetail(int boardnum) {
+		return (BoardDTO)session.selectOne("Board.getDetail", boardnum);
+	}
+
+	public void updateReadCount(int boardnum) {
+		session.update("Board.updateReadCount", boardnum);
+	}
+
+	public int getSeq() {
+		return session.selectOne("Board.getSeq");
+	}
+
+	public boolean addReply(ReplyDTO reply) {
+		boolean result = false;
+		
+		if(session.insert("Board.addReply", reply) == 1) {
+			result = true;
+		}
+		return result;
+	}
 }

@@ -5,6 +5,7 @@
 <configuration>
 	<typeAliases>
 		<typeAlias type="com.kh.app.board.dao.BoardDTO" alias="boarddto"/>
+		<typeAlias type="com.kh.app.board.dao.ReplyDTO" alias="replydto"/>
 	</typeAliases>
 	<environments default="development">
 	    <environment id="development">

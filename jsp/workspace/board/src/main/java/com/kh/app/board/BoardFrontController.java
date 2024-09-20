@@ -36,6 +36,19 @@ public class BoardFrontController extends HttpServlet {
 			
 			forward = new BoardListAction().execute(req, resp);
 			break;
+		case "/board/BoardWrite.bo": 
+			forward = new ActionForward(true, "/app/board/boardwrite.jsp");
+			break;
+		case "/board/BoardWriteOk.bo":
+			forward = new BoardWriteOkAction().execute(req, resp);
+			break;
+		case "/board/BoardView.bo":
+			forward = new BoardViewAction().execute(req, resp);
+			break;
+		case "/board/AddReply.bo":
+			// insert
+			forward = new AddReplyAction().execute(req, resp);
+			break;	
 		}
 		
 		// 페이지 이동에 대한 일괄 처리

@@ -7,6 +7,24 @@
 <head>
 <meta charset="UTF-8">
 <title>Insert title here</title>
+<style>
+	a:visited{
+		color:#ce93d8;
+		text-decoration:none;
+	}
+	a:hover{
+		color:#ce93d8;
+		text-decoration:none;
+		font-weight:bold;
+	}
+	a:link {
+		color:#ce93d8;
+		text-decoration:none;
+	}
+	table{
+		margin: 0 auto;
+	}
+</style>
 </head>
 <body>
 	<!-- BoardListAction.java에서 담아온 데이터를 아래 변수에 할당 -->
@@ -39,7 +57,7 @@
 				<c:forEach var="board" items="${boardList }" step="1">
 					<tr align="center" valign="middle" onmouseover="this.style.background='#bbdefb'" onmouseout="this.style.background=''">
 						<td height="23px">${board.boardnum }</td>
-						<td height="23px">${board.boardtitle }</td>
+						<td height="23px"><a href="/board/BoardView.bo?boardnum=${board.boardnum }">${board.boardtitle }</a></td>
 						<td height="23px">${board.username }</td>
 						<td height="23px">${board.boarddate }</td>
 						<td height="23px">${board.boardreadcount }</td>
@@ -59,18 +77,27 @@
 		<table style="border: 0px; width: 900px;">
 			<tr align="center" valign="middle">
 				<td>
-					<c:forEach var="i" begin="${startPage }" end="${endPage }">
-						[${i}]
-					</c:forEach>
+					<c:if test="${nowPage>1 }">
+						<a href="/board/BoardList.bo?page=${nowPage-1}">[&lt;]</a>
+					</c:if>
+						<c:forEach var="i" begin="${startPage }" end="${endPage }">
+							<c:choose>
+								<%-- 현재 보고있는 페이지는 a tag 제거 --%>
+								<c:when test="${i == nowPage }">[${i}]</c:when>
+								<c:otherwise>
+									<a href="/board/BoardList.bo?page=${i}">[${i}]</a>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach>
+					<c:if test="${nowPage<totalPage }">
+						<a href="/board/BoardList.bo?page=${nowPage+1}">[&gt;]</a>
+					</c:if>
 				</td>
 			</tr>
 		</table>
-		
-		
-		
 		<table style="border: 0px;width: 900px; ">
 			<tr align="right" valign="middle">
-				<td><a href="">[글쓰기]</a></td>
+				<td><a href="/board/BoardWrite.bo">[글쓰기]</a></td>
 			</tr>
 		</table>
 	</div>
