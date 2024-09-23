@@ -16,6 +16,7 @@
 </head>
 <body>
 	<c:set var="board" value="${requestScope.board }"/>
+	<c:set var="replylist" value="${requestScope.replylist }"/>
    <div>
       <table style="width: 900px; border: 0px;">
          <tr align="center" valign="middle">
@@ -65,25 +66,55 @@
                </td>
             </tr>
          </table>
-      
       <!-- 댓글 리스트 -->
       <hr>
          <table border="1">
-            <tr>
-               <td align="center" width="200px"></td>         
-               <td valign="top" style="padding-left:10px;">
-                  <textarea style="text-align:left;border:0px;width:680px;
-                     height:85px;resize:none;" name="" id="" readonly>
-                  </textarea><br>
-                  <a id="" href="">[수정]</a>
-                  &nbsp;&nbsp;&nbsp;
-                  <a id="" href="">[수정 하기]</a>
-                  &nbsp;&nbsp;&nbsp;
-                  <a id="" href="">[삭제]</a>
-               </td>
-            </tr>
+	         <c:choose>
+	         	<c:when test="${replylist != null and fn:length(replylist) > 0  }">
+	         		<c:forEach var="reply" items="${replylist }">
+			            <tr>
+			               <td align="center" width="200px">${reply.username }</td>         
+			               <td valign="top" style="padding-left:10px;">
+			                  <textarea style="text-align:left;border:0px;width:680px;
+			                     height:85px;resize:none;" name="reply${reply.replynum }" id="reply${reply.replynum }" readonly>${reply.replycontents }
+			                  </textarea><br>
+			                  <a id="" href="javascript:updateReply(${reply.replynum }, '${reply.password }' )">[수정]</a>
+			                  &nbsp;&nbsp;&nbsp;
+			                  <a id="" href="javascript:updateReadonlyReply(${reply.replynum })">[수정 하기]</a>
+			                  &nbsp;&nbsp;&nbsp;
+			                  <a id="" href="javascript:deleteReply(${reply.replynum }, '${reply.password }')">[삭제]</a>
+			               </td>
+			            </tr>
+	         		</c:forEach>
+	         	</c:when>
+	       		<c:otherwise>
+	            	<tr>
+		                 <td align="center">댓글이 없습니다.</td>
+	              	</tr>
+	         	</c:otherwise>
+	         </c:choose>
          </table>
       </form>
    </div>
+   <script type="text/javascript">
+   			function deleteReply(replynum, password) {
+				// /board/DeleteReply.bo
+				let pw = prompt("댓글 비밀번호를 입력하세요.");
+				if(pw == password) {
+					document.replyForm.action = "/board/DeleteReply.bo?replynum=" + replynum;
+					document.replyForm.submit();
+				}
+			}
+   			function updateReply(replynum, password) {
+				let pw = prompt("댓글 비밀번호를 입력하세요.");
+				if(pw == password) {
+					document.replyForm.action = "/board/UpdateReply.bo?replynum=" + replynum;
+					document.replyForm.submit();
+				}
+			}
+   			function updateReadonlyReply(replynum) {
+   				document.getElementById('reply' + replynum).readOnly = false;
+			}
+   </script>
 </body>
 </html>

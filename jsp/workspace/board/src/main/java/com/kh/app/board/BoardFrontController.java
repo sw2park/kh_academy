@@ -33,7 +33,6 @@ public class BoardFrontController extends HttpServlet {
 		switch (requestURI) {
 		case "/board/BoardList.bo": 
 //			forward = new ActionForward(true, req.getContextPath() + "/app/board/boardlist.jsp");
-			
 			forward = new BoardListAction().execute(req, resp);
 			break;
 		case "/board/BoardWrite.bo": 
@@ -49,6 +48,12 @@ public class BoardFrontController extends HttpServlet {
 			// insert
 			forward = new AddReplyAction().execute(req, resp);
 			break;	
+		case "/board/UpdateReply.bo":
+			forward = new UpdateReplyAction().execute(req, resp);
+			break;
+		case "/board/DeleteReply.bo":
+			forward = new DeleteReplyAction().execute(req, resp);
+			break;
 		}
 		
 		// 페이지 이동에 대한 일괄 처리

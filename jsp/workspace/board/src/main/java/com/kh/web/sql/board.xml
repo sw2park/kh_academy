@@ -30,4 +30,15 @@
 	<insert id="addReply" parameterType="replydto">
 		INSERT INTO TBL_REPLY VALUES (reply_seq.nextval, #{replycontents}, #{username}, #{password}, #{boardnum})
 	</insert>
+	<select id="getReplys" parameterType="_int" resultType="replydto"> 
+		SELECT * FROM TBL_REPLY WHERE BOARDNUM = #{boardnum}
+	</select>
+	<update id="updateReply" parameterType="hashmap">
+		UPDATE TBL_REPLY 
+		SET REPLYCONTENTS = #{replycontents} 
+		WHERE REPLYNUM = #{replynum}
+	</update>
+	<delete id="deleteReply" parameterType="_int">
+		DELETE FROM TBL_REPLY WHERE REPLYNUM = #{replynum}
+	</delete>
 </mapper>

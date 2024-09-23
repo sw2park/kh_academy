@@ -61,4 +61,29 @@ public class BoardDAO {
 		}
 		return result;
 	}
+
+	public List<ReplyDTO> getReplys(int boardnum) {
+		return session.selectList("Board.getReplys", boardnum);  
+	}
+
+	public boolean updateReply(int replynum, String replycontents) {
+		boolean result = false;
+		HashMap<String, Object> datas = new HashMap<String, Object>();
+		datas.put("replynum", replynum);
+		datas.put("replycontents", replycontents);
+		
+		if(session.update("Board.updateReply", datas) == 1) {
+			result = true;
+		}
+		return result;
+ 	}
+
+	public boolean deleteReply(int replynum) {
+		boolean result = false;
+		
+		if(session.delete("Board.deleteReply", replynum) == 1) {
+			result = true;
+		}
+		return result;
+	}
 }
