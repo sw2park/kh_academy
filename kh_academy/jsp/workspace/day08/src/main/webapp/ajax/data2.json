@@ -1,0 +1,9 @@
+{
+	"search_word":[
+		{"rank" : 1, "name" : "코로나"},
+		{"rank" : 2, "name" : "날씨"},
+		{"rank" : 3, "name" : "JSP"},
+		{"rank" : 4, "name" : "미국대선"},
+		{"rank" : 5, "name" : "웹개발"}
+	]
+}
