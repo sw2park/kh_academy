@@ -5,8 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.springframework.stereotype.Repository;
+
 import com.codingbox.core2.dto.Member;
 
+//@Repository
 public class MemoryMemberRepository implements MemberRepository {
 	// 메모리사용
 	private static Map<Integer, Member> store = new HashMap<>();
