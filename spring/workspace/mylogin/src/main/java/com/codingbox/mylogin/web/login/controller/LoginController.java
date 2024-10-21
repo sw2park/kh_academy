@@ -5,6 +5,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.codingbox.mylogin.web.login.dto.LoginForm;
@@ -65,7 +66,7 @@ public class LoginController {
 		return "redirect:/";
 	}
 
-	@PostMapping("/login")
+	//@PostMapping("/login")
 	public String loginV3(@ModelAttribute LoginForm form, Model model, HttpServletRequest request) {
 		Member loginMember = loginService.login(form.getLoginId(), form.getPassword());
 
@@ -82,6 +83,26 @@ public class LoginController {
 		session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
 
 		return "redirect:/";
+	}
+	
+	// /login?redirectURL=items
+	@PostMapping("/login")
+	public String loginV4(@ModelAttribute LoginForm form, Model model, HttpServletRequest request, @RequestParam(defaultValue = "/")String redirectURL) {
+		Member loginMember = loginService.login(form.getLoginId(), form.getPassword());
+
+		if (loginMember == null) {
+			// 로그인 실패
+			model.addAttribute("msg", "로그인 실패");
+			return "login/loginForm";
+		}
+
+		// 로그인 성공
+		// 세션에다가 로그인 정보 저장
+		// 세션이 있었으면 세션 반환, 없으면 신규 세션 생성
+		HttpSession session = request.getSession();
+		session.setAttribute(SessionConst.LOGIN_MEMBER, loginMember);
+		
+		return "redirect:" + redirectURL;
 	}
 
 	// 로그아웃
