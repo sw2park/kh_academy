@@ -10,6 +10,9 @@ import com.codingbox.mylogin.web.member.dto.Member;
 import com.codingbox.mylogin.web.member.repository.MemberRepository;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+
 
 @Controller
 @RequiredArgsConstructor
@@ -23,5 +26,12 @@ public class MemberController {
 	public String addForm(@ModelAttribute("member") Member member) {
 		return "members/addMemberForm";
 	}
-
+	
+	@PostMapping("/add")
+	public String save(@ModelAttribute Member member) {
+		memberRepository.save(member);
+		
+		return "redirect:/";
+	}
+	
 }
