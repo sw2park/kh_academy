@@ -1,0 +1,136 @@
+1. JPQL소개
+ 1-1. JPA는 다양한 쿼리 방법을 지원
+  - JPQL	
+  - JPA Criteira - 자바 코드를 짜서 JPA를 빌드해주는 generator 모음
+    (java 표준 스펙에서 제공, 실무에선 거의 사용하지 않는다.)
+  - QueryDSL - 자바 코드를 짜서 JPA를 빌드해주는 generator 모음
+  - 네이티브 SQL - 특정 database에 종속적인 쿼리를 사용해야 할 경우
+    (oracle같은 경우의 connect by)
+  - JDBC API를 직접사용, MyBatis, SpringJdbcTemplate 함께 사용
+  - JPQL은 100% 문제 해결을 할 순 없지만 실무에서도 거의 다 해결이 된다. 
+
+ 1-2. JPQL
+  - JPA를 사용하면 엔티티 객체를 중심으로 개발
+  - 문제는 검색 쿼리
+  - 검색을 할 때도 테이블이 아닌 엔티티 객체를 대상으로 검색
+  - JPA는 SQL을 추상화한 JPQL이라는 객체 지향 쿼리 언어 제공
+  - SQL과 문법 유사, select, from, where, group by, having, join 지원
+  - JPQL은 엔티티 객체를 대상으로 쿼리
+  - SQL은 데이터베이스 테이블을 대상 쿼리
+  - SQL을 추상화해서 특정 데이터베이스 SQL에 의존하지 않음
+  - JPA는 JPQL을 분석한 후 적절한 SQL을 만들어 데이터베이스를 조회
+
+ 1-3. JPQL 주의사항
+  - 대소문자 구분
+  -> 엔티티와 속성은 대소문자를 구분
+  -> JPQL키워드는 구분하지 않음 
+  - 엔티티 이름
+  -> 테이블명 대신 엔티티명을 사용,
+  @Eneity(name="...")으로 설정 가능
+  -> 지정하지 않을 시 클래스 명을 
+  기본값으로 사용(기본값을 추천)
+  - 별칭은 필수
+  -> JPQL은 별칭 필수
+  -> AS는 생략 가능
+
+2. JPQL문법
+ - SQL쿼리와 문법이 유사하다
+ select 절
+ from 절
+ where 절
+ group by 절
+ having 절
+ order by 절
+ - update
+ update 절 where 절
+ - delete
+ delete 절 where 절
+ - JPQL 사용
+  select m from Member as m where m.age>18
+  -> 엔티티와 속성은 대소문자 구분O
+  (Member, age)
+  -> java는 대소문자를 구분하니까
+  -> JPQL 키워드는 대소문자를 구분X
+  (select, FROM, where, ...)
+  -> 엔티티 이름 사용, 테이블 이름이 아님
+  -> 별칭은 필수(m,  as는 생략가능)
+
+3. TypeQuery, Query
+ - TypeQuery : 반환 타입이 명확할 때 사용
+ TypeQuery<Member> query = em.createQuery("select m from Member m", Member.class);
+ - Query : 반환 타입이 명확하지 않을 때 사용
+ Query query = em.createQuery("select m.username, m.age from Member m");
+
+4. 결과 조회 API
+ - query.getResultList() 
+ : 결과가 하나 이상일 때, 리스트 반환
+ : 결과가 없으면 빈 리스트 반환
+ : 빈 collection이 반환되기 때문에 NullPointerException에 대한 걱정은 하지 않아도 된다.
+ - query.getSingleResult() 
+ : 결과가 정확히 하나(조심)
+ : 단일 객체 반환
+ : 결과가 없으면 -> NoResultException
+ : 둘 이상이면 -> NonUniqueResultException
+
+5. 파라미터 바인딩
+ 5-1. 이름 기준(사용)
+ select m from Member m 
+ where m.username = :username
+ query.setParameter("username", usernameParam);
+
+ 5-2. 위치 기준(쓰지 말것)
+ select m from Member m
+ where m.username = ?1
+ query.setParameter(1, usernameParam);
+
+6. 프로젝션
+ - select 절에 조회할 대상을 지정하는 것
+ - 프로젝션 대상 : 엔티티, 엠베디드 타입, 스칼라 타입(숫자, 문자등 기본 데이터 타입)
+ - select m from Member m
+ : 엔티티 프로젝션(Member 엔티티 조회)
+ - select m.team from Member m 
+ : 엔티티 프로젝션(Member와 관련된 team을 조회)
+ - select m.address from Member m
+ : 임베디드 타입 프로젝션
+ - select m.username, m.age from Member m
+ : 스칼라 타입 프로젝션
+
+ 6-1. 프로젝션 - 여러 값 조회
+ - select m.username, m.age from Member m
+ 
+7. 페이징 API
+ - JPA는 페이징을 다음 두 API로 추상화
+ - setFirstResult(int startPosition)
+ : 조회 시작 위치(0부터 시작)
+ - setMaxResults(int masResult)
+ : 조회할 데이터 수
+ => 몇 번째부터 몇 개 가지고 올래?
+
+8. 조인
+
+9. 서브쿼리
+ - JPA 표준 스펙에서는 where, having절 에서만 서브쿼리 사용
+ - select 절도 가능(하이버네이트에서 지원)
+ - from 절의 서브쿼리는 현재 jpql에서 불가능
+  -> 조인으로 풀 수 있으면 풀어서 해결
+
+10. application.yml 
+ - properties와 비교했을 때 yml의 장점
+   -> 일단, 한 눈에 보기에도 가독성이 좋다
+   -> 불필요한 코드의 반복을 피할 수 있다
+   -> 계층 구조로 이해하기 쉽고 쓰기 편하다
+
+11. 로그파일 레벨
+ - TRACE : 가장 상세한 로그 수준
+ - DEBUG : 디버깅용 로그이다. 개발 단계에서 문제를 찾기 위해 변수 값, 조건문 흐름 등을 확인할때 사용
+ - INFO : 일반적인 정보를 기록하는 로그
+ - WARN : 경고성 로그
+ - ERROR : 오류가 발생한 경우 기록
+ - FATAL : 치명적인 오류, 프로그램의 실행이 불가능
+ - 보통 운영 환경운 INFO이상의 레벨을 설정. 디버깅, 개발 환경에서는 DEBUG, TRACE를 사용
+
+
+
+
+
+
