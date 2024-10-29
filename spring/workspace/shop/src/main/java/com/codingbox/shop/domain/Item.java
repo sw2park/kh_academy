@@ -21,13 +21,16 @@ public class Item {
 	private String name;
 	private int price;
 	private int stockQuantity;
+	
+	// ============== 비즈니스 로직 ==================
+	public void removeStock(int count) {
+		int restStock = this.stockQuantity - count;
+		
+		// 재고 부족시 로직 처리
+		if(restStock < 0) {
+			// 예외처리
+		}
+		
+		this.stockQuantity = restStock;
+	}
 }
-
-
-
-
-
-
-
-
-

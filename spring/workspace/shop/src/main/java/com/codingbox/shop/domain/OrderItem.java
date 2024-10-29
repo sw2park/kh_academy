@@ -30,13 +30,19 @@ public class OrderItem {
 	@ManyToOne
 	@JoinColumn(name = "item_id")
 	private Item item;
+
+	
+	// =========== 비즈니스 로직 =============
+	public static OrderItem createOrderItem(Item item, int price, int count) {
+		OrderItem orderItem = new OrderItem();
+		
+		orderItem.setItem(item);
+		orderItem.setOrderPrice(price);
+		orderItem.setCount(count);
+		
+		// 재고조정 -> 주문한 만큼 재고조정 필요(item)
+		item.removeStock(count);
+		
+		return orderItem;
+	}
 }
-
-
-
-
-
-
-
-
-

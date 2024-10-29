@@ -19,14 +19,14 @@ public class ItemRepository {
 	
 	// 상품 저장
 	public void save(Item item) {
-		if(item.getId() == null) {
-			// 신규 등록
-			em.persist(item);
-		} else {
-			// update
-			// 추후 설명
-			em.merge(item);
-		}
+//		if(item.getId() == null) {
+//			// 신규 등록
+//			em.persist(item);
+//		} else {
+//			// update
+//			em.merge(item);
+//		}
+		em.persist(item);
 	}
 	
 	// Item key값으로 하나 조회
