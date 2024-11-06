@@ -1,27 +1,21 @@
-import reactImg from './assets/react-core-concepts.png'
-
-const reactDescriptions = ['핵심', '근간이 되는', '중요한'];
-
-function genRandomInt(max){
-  return Math.floor(Math.random() * (max+1));
-}
-
-function Header() {
-  const description = reactDescriptions[genRandomInt(2)];
-  return (
-    <header>
-      <img src={reactImg} alt="Stylized atom" />
-      <h1>리액트 필수 요소들</h1>
-      <p>우리가 작성하게 될 리액트의 주요 구성 {description} 요소들</p>
-    </header>
-  );
-}
+import CORE_CONCEPTS from "./data.js";
+import Header from './components/Header.jsx';
+import CoreConcept from "./components/CoreConcept.jsx";
 
 function App() {
   return (
     <div>
-      <Header/>
+      <Header />
       <main>
+        <section id="core-concepts">
+          <h2>핵심 개념</h2>
+          <ul>
+            <CoreConcept {...CORE_CONCEPTS[0]}/>
+            <CoreConcept {...CORE_CONCEPTS[1]}/>
+            <CoreConcept {...CORE_CONCEPTS[2]}/>
+            <CoreConcept {...CORE_CONCEPTS[3]}/>
+          </ul>
+        </section>
         <h2>시작해봅시다!</h2>
       </main>
     </div>
