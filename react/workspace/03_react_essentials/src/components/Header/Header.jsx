@@ -1,4 +1,4 @@
-import reactImg from "../assets/react-core-concepts.png";
+import reactImg from "../../assets/react-core-concepts.png";
 import "./Header.css";
 
 const reactDescriptions = ["핵심", "근간이 되는", "중요한"];

@@ -1,0 +1,69 @@
+코드파일 폴더를 옮길 시에 import 경로를 알아서 맞춰주는데 그것을 update 또는 리팩토링이라고 한다.
+
+- Prop의 children
+리액트만 갖고있는 특수한 유니크한 prop이 있음 => children 
+<TabButton>컴포넌트</TabButton>을 쓰면
+<TabButton children="컴포넌트"></TabButton> 와 같음
+태그 사이에 있는 것을 children을 통해 접근할 수 있음
+여기서 태그를 Wrapper라고 말을 함.
+다시 말하면 Wrapper 사이에 있는 children prop을 데이터로 전송할 수 있음.
+children은 리액트에 지정된 명령어이고, 이름 변경은 불가능함.
+
+버블링? JS와 같은 개념이라는데
+
+JS에서 함수 호출할때는 (), 단순히 함수 연결할때는 괄호없이 넣어야한다.
+
+ // 일반적으로 JS에서 아래와 같이 이벤트리스너를 하지만 리액트에선 적절한 방식이 아님
+    // document.querySelector('button').addEventListener('click', ()=>{})
+    function handleClick(){
+        console.log('안녕하세요.');
+    }
+    return (
+        <li><button onClick={handleClick}>{children}</button></li>
+    );
+
+hook
+일반적인 생명주기 사이클을 벗어나있는 성질을 갖고있음
+보통 use가 붙어있으면 hook이 적용되어있는거임(getter, setter)
+보통 hook 함수라고 말함
+대표 예시가 useState
+
+SnapShot 변수
+
+useState() 실행시
+1. 화면이 다시 렌더링이 된다.
+2. 리렌더링이 될때 snapShot 변수는 데이터가 유지된다.
+
+hook 함수의 규칙
+1. 컴포넌트 내에서만 실행이 가능 => 일반함수에서나 컴포넌트 외부에서는 실행이 불가능하다.
+2. hook함수는 컴포넌트의 가장 위에서만 호출이 된다. 
+위 규칙을 안지켰을 경우 컴파일이 불가능하다.
+
+useState같은 경우 배열을 사용하여 반환하는데, 이를 담아줘야한다.
+일차원 배열로 이루어져있으며 첫번째 인덱스에는 저장공간, 두번째 인덱스에는 저장공간용 setter함수가 담아져있다.
+저장공간용 setter함수를 썼을때 re-rendering이 일어난다.
+첫번째 인덱스에 있는 저장공간 부분을 스냅샷 변수라고 함.
+
+저장공간용 setter 함수 호출
+1. selectedTopic <- 값
+2. 소속컴포넌트 -> 재실행
+
+저장공간용 setter 함수 호출 시
+1. selectedTopic이라는 snapshot변수에 전달된 문자열을 세팅하고
+2. App 컴포넌트의 재실행을 유발한다.
+
+function handleSelect(selectedButton){
+    setSelectedTopic(selectedButton);
+    console.log(selectedTopic);
+  }
+
+위 코드를 예시로 들었을때 
+1. setSelectedTopic이 속해있는 라인을 리액트에 부탁한다.
+2. console.log(selectedTopic);라인의 selectedTopic값이 출력된다.(변경전)
+3. 리액트 selectedTopic을 변경하고(부탁한 값) App컴포넌트를 재실행한다.
+
+1. price값을 75로 변경
+2. App컴포넌트의 재실행을 유발
+
+truthy / fulsy
+단축평가식 (Short Circuit Evaluation)
