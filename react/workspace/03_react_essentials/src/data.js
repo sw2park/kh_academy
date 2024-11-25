@@ -1,32 +1,30 @@
 import componentsImg from "./assets/components.png";
-import propsImg from "./assets/config.png";
 import jsxImg from "./assets/jsx-ui.png";
 import stateImg from "./assets/state-mgmt.png";
+import propsImg from "./assets/config.png";
 
 export const CORE_CONCEPTS = [
   {
+    title: "컴포넌트",
+    description: "UI를 구성하는 핵심 블럭",
     image: componentsImg,
-    title: "Components",
-    description:
-      "The core UI building block - compose the user interface by combining multiple components.",
   },
   {
-    image: jsxImg,
     title: "JSX",
     description:
-      "Return (potentially dynamic) HTML(ish) code to define the actual markup that will be rendered.",
+      "HTML코드의 형태를 취하고 있는 실제로 렌더링 되어야 하는 return 구문",
+    image: jsxImg,
   },
   {
-    image: propsImg,
     title: "Props",
-    description:
-      "Make components configurable (and therefore reusable) by passing input data to them.",
+    description: "데이터를 전달해서 컴포넌트를 유연하게 만들어주는 입력값",
+    image: propsImg,
   },
   {
-    image: stateImg,
     title: "State",
     description:
-      "React-managed data which, when changed, causes the component to re-render & the UI to update.",
+      "컴포넌트 렌더링을 유발시키며, 리액트에 의해서 관리되는 UI에 관련된 저장용 데이터",
+    image: stateImg,
   },
 ];
 
