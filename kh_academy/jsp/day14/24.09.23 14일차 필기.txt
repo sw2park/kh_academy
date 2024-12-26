@@ -1,0 +1,16 @@
+- 게시글 조회
+index.jsp -> [글 목록] -> /board/BoardList.bo
+-> BoardFrontController.java
+-> BoardListAction.java(비지니스 로직)
+	forward
+	redirect
+-> BoardDAO.java
+	Board.getBoardList
+-> board.xml
+	namespace.id
+-> boardlist.jsp
+
+- 글 쓰기 
+index.jsp -> /board/BoardWirte.bo
+-> BoardFrontController.java
+-> new ActionForward(true, "/app/board/boardwrite.jsp");
