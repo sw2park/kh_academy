@@ -1,0 +1,56 @@
+package com.danaojo.reticatch.detail.service;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.danaojo.reticatch.detail.dto.AddOrderDTO;
+import com.danaojo.reticatch.entity.Orders;
+import com.danaojo.reticatch.entity.PFJoin;
+import com.danaojo.reticatch.mypage.repository.OrdersRepository;
+import com.danaojo.reticatch.mypage.repository.PfJoinRepository;
+import com.danaojo.reticatch.mypage.repository.UsersRepository;
+
+import jakarta.transaction.Transactional;
+
+@Service
+public class DetailService {
+	@Autowired
+	private PfJoinRepository pfJoinRepository;
+	
+	@Autowired
+	private OrdersRepository orderRepository;
+	
+	@Autowired 
+	private UsersRepository usersRepository;
+	
+	@Transactional
+	public PFJoin getDetailData(int seqNum){
+		PFJoin pfData = getDetatilPfJoin(seqNum);
+		
+		return pfData;
+	}
+	
+	public PFJoin getDetatilPfJoin(int seqNum) {
+		return pfJoinRepository.getDetailPfJoin(seqNum);
+	}
+
+	public String getDetailImage(int seqNum) {
+		return pfJoinRepository.getDetailImage(seqNum);
+	}
+
+	public void addOrderData(AddOrderDTO aDto) {
+		Long seqPfNum = aDto.getSeqpfjoinId();
+		String userId = aDto.getUserId();
+		
+		Long userSeq = null;
+		userSeq = usersRepository.findByUser_Name(userId);
+		
+		Orders orderEntity = new Orders();
+		
+		orderEntity.setCancel_status("취소 가능");
+		
+		orderRepository.addOrderData(userSeq, seqPfNum);
+	}	
+}

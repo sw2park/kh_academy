@@ -1,0 +1,77 @@
+package com.danaojo.reticatch.detail.service;
+
+import java.util.List;
+import java.util.Optional;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.danaojo.reticatch.detail.dto.AddOrderDTO;
+import com.danaojo.reticatch.entity.Orders;
+import com.danaojo.reticatch.entity.PFJoin;
+import com.danaojo.reticatch.entity.Users;
+import com.danaojo.reticatch.mypage.repository.OrdersRepository;
+import com.danaojo.reticatch.mypage.repository.PfJoinRepository;
+import com.danaojo.reticatch.mypage.repository.UsersRepository;
+import com.danaojo.reticatch.mypage.util.MypageUtil;
+
+import jakarta.transaction.Transactional;
+
+@Service
+public class DetailService {
+	@Autowired
+	private PfJoinRepository pfJoinRepository;
+	
+	@Autowired
+	private OrdersRepository orderRepository;
+	
+	@Autowired 
+	private UsersRepository usersRepository;
+	
+	@Transactional
+	public PFJoin getDetailData(int seqNum){
+		PFJoin pfData = getDetatilPfJoin(seqNum);
+		
+		return pfData;
+	}
+	
+	public PFJoin getDetatilPfJoin(int seqNum) {
+		return pfJoinRepository.getDetailPfJoin(seqNum);
+	}
+
+	public String getDetailImage(int seqNum) {
+		return pfJoinRepository.getDetailImage(seqNum);
+	}
+
+	@Transactional
+	public void addOrderData(AddOrderDTO aDto) {
+		MypageUtil util = new MypageUtil();
+		String today = util.returnToday();
+		int seqPfNum = aDto.getSeqpfjoinId();
+		String userId = aDto.getUserId();
+		
+		Long userSeq = null;
+		userSeq = usersRepository.findByUser_Name(userId);
+		
+		Optional<Users> userData = usersRepository.findById(userSeq);
+		PFJoin pfData = pfJoinRepository.getDetailPfJoin(seqPfNum);
+		String viewDate = pfData.getP_start_date();
+		String viewTime = pfData.getPd_time();
+		String place = pfData.getPd_hall_name();
+		
+		Orders oEntity = new Orders();
+		
+		oEntity.setCancel_status("취소 가능");
+		oEntity.setCancel_date("2025-12-24");
+		oEntity.setBuy_date(today);
+		oEntity.setTotal_sum("무료");
+		oEntity.setTotal_ticket("1");
+		oEntity.setView_date(viewDate);
+		oEntity.setView_time(viewTime);
+		oEntity.setSeat_num("0");
+		oEntity.setPlace(place);
+		oEntity.setSeq_user_id(userSeq);
+		
+		orderRepository.save(oEntity);
+	}	
+}

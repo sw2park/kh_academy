@@ -1,0 +1,5 @@
+package com.kh.opendata.config;
+
+public class WebConfig {
+
+}

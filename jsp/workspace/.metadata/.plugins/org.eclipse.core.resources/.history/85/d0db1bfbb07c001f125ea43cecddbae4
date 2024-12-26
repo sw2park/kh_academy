@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "https://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace = "Board">
+	<select id="getBoardList" parameterType="hashmap" resultType="BoardDTO">
+	SELECT * FROM (SELECT rownum R, A.* FROM 
+		(SELECT * FROM QNABOARD ORDER BY BOARDNUM DESC) A) B
+			WHERE b.R BETWEEN #{startRow} AND #{endRow}
+  	</select>
+
+	<select id="getBoardCnt" resultType="_int">
+		SELECT count(*) FROM QNABOARD
+  	</select>
+
+	<select id="getCategoryCnt" parameterType="string" resultType="_int">
+		SELECT COUNT(*) FROM QNABOARD WHERE BOARDCATE = #{boardcate}
+	</select>
+
+	<insert id="insertBoard" parameterType="BoardDTO">
+  		INSERT INTO QNABOARD VALUES (board_seq.nextval, #{boardcate}
+  		, #{username}, #{boardtitle}, #{boardcontents}, sysdate, NULL)
+  	</insert>
+  	
+  	<select id="getSeq" resultType="_int">
+		SELECT board_seq.currval FROM dual
+  	</select>
+  	
+  	<!-- 글 쓸 때 권한 설정 하고 싶어서 만드는중...... -->
+  	<select id="getGrade" parameterType="_int" resultType="string">
+		SELECT m.usergrade FROM QNABOARD q JOIN "MEMBER" m ON q.username = m.username WHERE q.boardnum = #{boardnum}
+  	</select>
+
+</mapper>

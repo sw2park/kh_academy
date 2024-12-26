@@ -1,0 +1,5 @@
+package com.danaojo.reticatch.mypage.dto;
+
+public class PostReviewListDTO {
+
+}

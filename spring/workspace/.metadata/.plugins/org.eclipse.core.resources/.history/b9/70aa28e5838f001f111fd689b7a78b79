@@ -1,0 +1,8 @@
+package com.gamers.LoaAngle.api.controller;
+
+public class APIController {
+	public String callInfoAPI(String category, String charName) {
+		
+		return "";
+	}
+}

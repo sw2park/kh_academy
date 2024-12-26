@@ -1,0 +1,10 @@
+package com.danaojo.reticatch.mypage.dto;
+
+import lombok.Getter;
+import lombok.Setter;
+
+@Getter @Setter
+public class PostSomeCount {
+	private int reviewCount;
+	private int expectionCount;
+}

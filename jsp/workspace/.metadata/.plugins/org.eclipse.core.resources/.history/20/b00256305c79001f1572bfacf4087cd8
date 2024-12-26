@@ -1,0 +1,19 @@
+package com.kh.app.board;
+
+import com.kh.app.board.dao.BoardDAO;
+import com.kh.web.action.Action;
+import com.kh.web.action.ActionForward;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+public class DeleteReplyAction implements Action {
+	@Override
+	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) {
+		ActionForward forward = new ActionForward();
+		BoardDAO bDao = new BoardDAO();
+		// bdao.deleteReply();
+		
+		return forward;
+	}
+}

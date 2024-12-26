@@ -1,0 +1,15 @@
+package com.kh.opendata.apitest;
+
+import java.io.IOException;
+
+import com.kh.opendata.controller.APIController;
+
+public class TestMain {
+
+	public static void main(String[] args) throws IOException {
+		APIController cont = new APIController();
+		
+		System.out.println(cont.airPollution(null));
+	
+	}
+}

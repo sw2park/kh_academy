@@ -1,0 +1,33 @@
+package com.kh.app.board;
+
+import com.kh.app.board.dao.BoardDAO;
+import com.kh.app.board.dao.BoardDTO;
+import com.kh.web.action.Action;
+import com.kh.web.action.ActionForward;
+
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+public class BoardViewAction implements Action {
+	@Override
+	public ActionForward execute(HttpServletRequest req, HttpServletResponse resp) {
+		ActionForward forward = new ActionForward();
+		BoardDAO bDao = new BoardDAO();
+				
+		int boardnum = Integer.parseInt(req.getParameter("boardnum")); 
+		
+		// 댓글 조회
+		bDao.getReplys(boardnum);
+		//System.out.println(bDao.getReplys(boardnum));
+		
+		
+		// 조회수 update
+		bDao.updateReadCount(boardnum);
+		
+		req.setAttribute("board", bDao.getDetail(boardnum)); 
+		forward.setRedirect(false);
+		forward.setPath("/app/board/boardview.jsp");
+		
+		return forward;
+	}
+}

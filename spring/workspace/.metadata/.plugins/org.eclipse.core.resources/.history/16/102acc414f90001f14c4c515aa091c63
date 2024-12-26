@@ -1,0 +1,43 @@
+package com.gamers.LoaAngle.api.controller;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+import com.gamers.LoaAngle.userInfo.siblings.dto.SiblingsDTO;
+
+@Controller
+public class LoaApiController extends APIController{
+	// 대표 캐릭터 이름을 입력해서 관련된 원정대 전체 캐릭터 불러오기
+	@GetMapping("testt")
+	public void siblings(String _charName) throws ParseException {
+		//변경해야할 것
+		String charName = "하린슬레";
+		// 테스트 끝나면 아래로 원상복구
+		// String charName = _charName;
+		String category = "characters";
+		String cateDetail = "siblings";
+		
+		// api 호출
+		String searchData = callInfoAPI(category, charName, cateDetail);
+		
+		if(!searchData.contentEquals("[]")) { // API 호출 후 검색결과가 있는 경우
+			// JSONArray로 변환
+			JSONArray searchResult = (JSONArray)new JSONParser().parse(searchData);
+			
+			for(int i=0; i<searchResult.size(); i++) {
+				// JSONObject
+				JSONObject searchResultObj = (JSONObject)searchResult.get(i);
+				
+				SiblingsDTO siblingsDTO = new SiblingsDTO();
+				siblingsDTO.set
+				System.out.println("CharacterName : " + searchResultObj.get("CharacterName").toString());
+			}
+		} else { // API 호출 후 검색 결과가 없는 경우
+			System.out.println("검색결과가 없습니다.");
+		}
+	}
+}

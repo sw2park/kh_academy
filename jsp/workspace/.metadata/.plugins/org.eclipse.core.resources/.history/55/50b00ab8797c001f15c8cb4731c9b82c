@@ -1,0 +1,13 @@
+package com.reviewfinder.main.dao;
+
+public class MainMovieDTO {
+	private int movie_num;
+	private String movie_title;
+	private String movie_date;
+	private String movie_plot;
+	private String movie_genre;
+	private String movie_poster;
+	private String movie_still_image;
+	private int movie_star_rate;
+	
+}

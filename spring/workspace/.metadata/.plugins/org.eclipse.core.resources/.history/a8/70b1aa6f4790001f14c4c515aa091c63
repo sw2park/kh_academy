@@ -1,0 +1,41 @@
+package com.gamers.LoaAngle.api.controller;
+
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+
+@Controller
+public class LoaApiController extends APIController{
+	// 대표 캐릭터 이름을 입력해서 관련된 원정대 전체 캐릭터 불러오기
+	@GetMapping("testt")
+	public void siblings(String _charName) throws ParseException {
+		//변경해야할 것
+		String charName = "하린슬레";
+		// 테스트 끝나면 아래로 원상복구
+		// String charName = _charName;
+		String category = "characters";
+		String cateDetail = "siblings";
+		
+		// api 호출
+		String searchData = callInfoAPI(category, charName, cateDetail);
+		
+		System.out.println(searchData);
+		
+		// JSONObject로 변환
+		//JSONObject objData = (JSONObject)new JSONParser().parse(searchData);
+		JSONArray arrResult = (JSONArray)new JSONParser().parse(searchData);
+		// JSON배열로 변환
+		//JSONArray searchResultArr =(JSONArray)arrResult.get("");
+		System.out.println("searchResultArr : " + arrResult.get(0).toString());
+		
+		
+		
+		
+		
+//		JSONObject infoListResult = (JSONObject).get
+		
+	}
+}

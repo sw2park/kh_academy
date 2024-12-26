@@ -1,0 +1,5 @@
+package com.danaojo.ticatch.entity;
+
+public class Expectation {
+
+}

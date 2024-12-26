@@ -1,0 +1,7 @@
+package com.reviewfinder.main.dao;
+
+public class MainRankDTO {
+	private int movie_num;
+	private int movie_rank;
+	private String boxoffice_date;
+}

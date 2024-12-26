@@ -1,0 +1,9 @@
+package com.danaojo.reticatch.expectation.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.danaojo.reticatch.entity.Expectation;
+
+public interface ExpectationRepository extends JpaRepository<Expectation, Long> {
+
+}

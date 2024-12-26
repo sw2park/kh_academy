@@ -1,0 +1,8 @@
+package com.reviewfinder.movie.dao;
+
+public class Snippet {
+	public static void main(String[] args) {
+		
+	}
+}
+

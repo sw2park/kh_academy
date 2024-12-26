@@ -1,0 +1,27 @@
+package com.gamers.LoaAngle.api.controller;
+
+import java.net.URL;
+import java.net.URLEncoder;
+
+import com.gamers.LoaAngle.api.LoaApiConst;
+
+public class APIController {
+	public String callInfoAPI(String _category, String _charName, String _cateDetail) {
+		try {
+			// 카테고리 인코딩
+			String category = URLEncoder.encode(_category, "UTF-8");
+			// 캐릭터 검색한 것 인코딩
+			String charName = URLEncoder.encode(_charName, "UTF-8");
+			// URL 뒤에 오는 상세 카테고리
+			String cateDetail = null;
+			
+			if(!_cateDetail.equals(null)) {
+			}
+			// URL API 설정
+			URL url = new URL(LoaApiConst.LOA_API_URL+category+"/"+charName);
+		} catch (Exception e) {
+		}
+		
+		return "";
+	}
+}

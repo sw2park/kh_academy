@@ -1,0 +1,12 @@
+package com.danaojo.reticatch.main.service;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import com.danaojo.reticatch.mypage.repository.PfJoinRepository;
+
+@Service
+public class MainService {
+	@Autowired
+	private PfJoinRepository pfJoinRepository;
+}

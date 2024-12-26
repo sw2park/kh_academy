@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<servers>
+  <server auto-publish-setting="2" auto-publish-time="1" configuration-id="/Servers2/day05-config" deployDir="wtpwebapps" hostname="localhost" id="day05" name="day05" runtime-id="Apache Tomcat v10.1" server-type="org.eclipse.jst.server.tomcat.101" server-type-id="org.eclipse.jst.server.tomcat.101" start-timeout="60" stop-timeout="15" testEnvironment="true" timestamp="7">
+    <list key="modules" value0="day05::org.eclipse.jst.jee.server:day05::jst.web::5.0"/>
+  </server>
+  <server auto-publish-setting="2" auto-publish-time="1" configuration-id="/Servers2/day06-config" deployDir="wtpwebapps" hostname="localhost" id="day06" name="day06" runtime-id="Apache Tomcat v10.1" server-type="org.eclipse.jst.server.tomcat.101" server-type-id="org.eclipse.jst.server.tomcat.101" start-timeout="60" stop-timeout="15" testEnvironment="true" timestamp="2">
+    <list key="modules" value0="day06::org.eclipse.jst.jee.server:day06::jst.web::5.0"/>
+  </server>
+  <server auto-publish-setting="2" auto-publish-time="1" configuration-id="/Servers2/day07-config" deployDir="wtpwebapps" hostname="localhost" id="day07" name="day07" runtime-id="Apache Tomcat v10.1" server-type="org.eclipse.jst.server.tomcat.101" server-type-id="org.eclipse.jst.server.tomcat.101" start-timeout="60" stop-timeout="15" testEnvironment="true" timestamp="2">
+    <list key="modules" value0="day07::org.eclipse.jst.jee.server:day07::jst.web::5.0"/>
+  </server>
+  <server auto-publish-setting="2" auto-publish-time="1" configuration-id="/Servers2/day08-config" deployDir="wtpwebapps" hostname="localhost" id="day08" name="day08" runtime-id="Apache Tomcat v10.1" server-type="org.eclipse.jst.server.tomcat.101" server-type-id="org.eclipse.jst.server.tomcat.101" start-timeout="60" stop-timeout="15" testEnvironment="true" timestamp="2">
+    <list key="modules" value0="day08::org.eclipse.jst.jee.server:day08::jst.web::5.0"/>
+  </server>
+  <server auto-publish-setting="2" auto-publish-time="1" configuration-id="/Servers2/day09-config" deployDir="wtpwebapps" hostname="localhost" id="day09" name="day09" runtime-id="Apache Tomcat v10.1" server-type="org.eclipse.jst.server.tomcat.101" server-type-id="org.eclipse.jst.server.tomcat.101" start-timeout="60" stop-timeout="15" testEnvironment="true" timestamp="3">
+    <list key="modules" value0="day09::org.eclipse.jst.jee.server:day09::jst.web::5.0"/>
+  </server>
+  <server auto-publish-setting="2" auto-publish-time="1" configuration-id="/Servers2/day10-config" deployDir="wtpwebapps" hostname="localhost" id="day10" name="day10" runtime-id="Apache Tomcat v10.1" server-type="org.eclipse.jst.server.tomcat.101" server-type-id="org.eclipse.jst.server.tomcat.101" start-timeout="60" stop-timeout="15" testEnvironment="true" timestamp="2">
+    <list key="modules" value0="day10::org.eclipse.jst.jee.server:day10::jst.web::5.0"/>
+  </server>
+  <server auto-publish-setting="2" auto-publish-time="1" configuration-id="/Servers2/day11-config" deployDir="wtpwebapps" hostname="localhost" id="day11" name="day11" runtime-id="Apache Tomcat v10.1" server-type="org.eclipse.jst.server.tomcat.101" server-type-id="org.eclipse.jst.server.tomcat.101" start-timeout="60" stop-timeout="15" testEnvironment="true" timestamp="4">
+    <list key="modules" value0="day11::org.eclipse.jst.jee.server:day11::jst.web::5.0"/>
+  </server>
+  <server auto-publish-setting="2" auto-publish-time="1" configuration-id="/Servers2/board-config" deployDir="wtpwebapps" hostname="localhost" id="board" name="board" runtime-id="Apache Tomcat v10.1" server-type="org.eclipse.jst.server.tomcat.101" server-type-id="org.eclipse.jst.server.tomcat.101" start-timeout="60" stop-timeout="15" testEnvironment="true" timestamp="3">
+    <list key="modules" value0="board::org.eclipse.jst.jee.server:board::jst.web::5.0"/>
+  </server>
+  <server auto-publish-setting="2" auto-publish-time="1" configuration-id="/Servers3/ReviewFinder-config" deployDir="wtpwebapps" hostname="localhost" id="ReviewFinder" name="ReviewFinder" runtime-id="Apache Tomcat v10.1" server-type="org.eclipse.jst.server.tomcat.101" server-type-id="org.eclipse.jst.server.tomcat.101" start-timeout="60" stop-timeout="15" testEnvironment="true" timestamp="2">
+    <list key="modules" value0="jspproject::org.eclipse.jst.jee.server:jspproject::jst.web::5.0"/>
+  </server>
+</servers>

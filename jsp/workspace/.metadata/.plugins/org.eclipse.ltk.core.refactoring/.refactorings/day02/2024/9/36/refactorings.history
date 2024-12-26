@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<session version="1.0">
+<refactoring comment="Copy package &apos;com.kh.web.filter&apos; to &apos;day05/src/main/java&apos;&#x0D;&#x0A;- Original project: &apos;day02&apos;&#x0D;&#x0A;- Destination element: &apos;day05/src/main/java&apos;&#x0D;&#x0A;- Original element: &apos;day02/src/main/java/com.kh.web.filter&apos;" description="Copy package" destination="=day05/src\/main\/java" element1="/src\/main\/java&lt;com.kh.web.filter" flags="589830" fragments="1" id="org.eclipse.jdt.ui.copy" policy="org.eclipse.jdt.ui.copyPackages" stamp="1725495471996" version="1.0"/>
+</session>

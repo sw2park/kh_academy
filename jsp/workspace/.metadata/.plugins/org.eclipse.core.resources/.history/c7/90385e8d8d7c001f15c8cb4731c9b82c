@@ -1,0 +1,62 @@
+package com.reviewfinder.main;
+
+import java.io.IOException;
+
+import org.json.simple.parser.ParseException;
+
+import com.reviewfinder.action.ActionForward;
+import com.reviewfinder.json.KobisJson;
+import com.reviewfinder.main.dao.MainMovieDTO;
+
+import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.annotation.WebServlet;
+import jakarta.servlet.http.HttpServlet;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
+
+@WebServlet("*.ma")
+public class MainFrontController extends HttpServlet{
+	@Override
+	protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		try {
+			doProcess(req, resp);
+		} catch (ServletException | IOException | ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+	
+	@Override
+	protected void doPost(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+		try {
+			doProcess(req, resp);
+		} catch (ServletException | IOException | ParseException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+	}
+
+	private void doProcess(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException, ParseException {
+		String requestURI = req.getRequestURI();
+		ActionForward forward = null;
+		
+		if(requestURI.equals("/main.ma")) {
+			// path 추가
+			forward = new MoveMainAction().execute(req, resp);
+			KobisJson kJson = new KobisJson();
+			
+		}
+		
+		// 한꺼번에 보내기
+		if(forward != null) {
+			if(forward.isRedirect()) {
+				resp.sendRedirect(forward.getPath());
+			} else {
+				RequestDispatcher disp = req.getRequestDispatcher(forward.getPath());
+				disp.forward(req, resp);
+			}
+		}
+
+	}
+}

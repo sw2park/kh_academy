@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<form action="">
+		<label>
+			원정대 검색
+			<input type="text">
+		</label>
+	</form>
+</body>
+</html>

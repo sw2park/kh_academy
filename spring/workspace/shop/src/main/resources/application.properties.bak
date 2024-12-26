@@ -1,0 +1,20 @@
+spring.application.name=shop
+
+# 톰캣 서버 포트 수정
+server.port=9090
+
+spring.thymeleaf.cache=false
+
+# dbms
+spring.datasource.url=jdbc:oracle:thin:@localhost:1521:xe
+spring.datasource.driver-class-name=oracle.jdbc.OracleDriver
+spring.datasource.username=spring
+spring.datasource.password=spring
+
+
+
+
+
+
+
+

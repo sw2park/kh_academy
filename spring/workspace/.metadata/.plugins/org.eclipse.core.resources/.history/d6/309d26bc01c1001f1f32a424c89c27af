@@ -1,0 +1,5 @@
+package com.danaojo.reticatch.detail.dto;
+
+public class AddReviewDTO {
+
+}
