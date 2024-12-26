@@ -1,0 +1,18 @@
+1. 경로
+ - http://localhost:8081/project1/abc.jsp
+   위 경로를 EL문을 이용해서 경로 리턴값을 가져온다했을 때 아래처럼 결과가 리턴된다.
+ - ${pageContext.request.requestURL}
+  : http://localhost:8081/project1/abc.jsp
+ - ${pageContext.request.scheme}
+  : http
+ - ${pageContext.request.serverName}
+  : localhost
+ - ${pageContext.request.serverPort}
+  : 8081 
+ - ${pageContesxt.request.requestURI}
+  : /project01/abc.jsp
+ - ${pageContesxt.request.servletPath}
+  : /abc.jsp
+ - ${pageContesxt.request.contextPath}
+ <%= request.getContextPath() %>
+  : /project1

@@ -1,0 +1,100 @@
+1. Framework란?
+ - '뼈대나 근간'을 이루는 코드들의 묶음
+ - 프로그램의 기본 흐름이나 구조를 정하고, 이 구조에 자신의 코드를 추가하는 방식으로 개발할 수 있도록 하는 프로그래밍의 기본 틀을 의미한다.
+ - 개발에 필요한 구조가 제공되고, 여기에 필요한 부분을 조립하는 형태로 개발이 진행
+
+2. 라이브러리
+ - 라이브러리란 자주 사용되는 로직을 재사용하기 편리하도록 잘 정리한 일련의 코드들의 집합
+
+3. Framework vs 라이브러리
+ - 프레임워크는 자동차의 프레임, 즉 기본적으로 구성하고 있는 뼈대를 말한다.
+ - 라이브러리는 자동차의 기능을 하는 부품을 의미한다.
+ - 소형차를 만들기 위해 뼈대를 사용하는데, 이 뼈대로 SUV를 만들 수는 없다. (Framework)
+ - 그러나 바퀴나, 선루프 등은 비교적 다른 종류로 쉽게 바뀔 수 있다. (라이브러리)
+
+4. Spring 이란?
+ - 스프링 프레임워크는 자바 플랫폼을 위한 오픈소스 애플리케이션 프레임워크로서 간단히 스프링(Spring)이라고도 불린다.
+ - 동적인 웹 사이트를 개발하기 위한 여러가지 서비스를 제공하고 있다.
+
+5. Spring vs Spring Boot
+
+6. STS 설치 
+ - Spring Tools Suite
+
+7. Spring boot project 만들기
+- https://start.spring.io/
+ 7-1. Project 
+   - 사용할 빌드 툴 선택
+   - 프로젝트에 필요한 의존성을 관리하고 빌드 라이프 사이클을 관리해 주는 툴이다.
+   - 과거에는 Maven을, 최근에는 Gradle을 사용하는 추세이다. 
+   - 스프링 라이브러리 관리 자체도 최근에는 Gradle로 하고 있다. 
+ 7-2. Embed Tomcat
+   - 스프링 부트는 내장형 톰캣을 가지고 있기 때문에 별도의 톰캣을 설정할 필요가 없어졌으며, 그렇기 때문에 독립적으로 실행 가능한 jar로 손쉽게 배포가 가능해졌다. 
+
+8. Thymeleaf
+ - https://www.thymeleaf.org/
+
+9. viewResolver
+ - 컨트롤러에서 리턴 값으로 문자를 반환하면 viewResolver가 화면을 찾아서 처리한다.
+ - 스프링 부트 템플릿엔진 기본 viewName 매핑
+ - resources/templates/+{viewName} + .html
+ - 실행할 뷰를 찾는 일을 한다. 
+ - 컨트롤러가 리턴한 뷰 이름에 해당하는 뷰 객체를 매핑하는 역할
+ - forward방식, redirect 방식
+ - return "forward:/hello"(기본값)
+ - return "redirect:/hello"
+
+10. DispatcherServlet
+ - 스프링 MVC도 프론트 컨트롤러 패턴으로 구현되어 있다. 
+ - 스프링 MVC의 프론트 컨트롤러가 바로 디스패처 서블릿(DispatcherServlet)이다.
+ - 이 디스패처 서블릿이 바로 스프링 MVC의 핵심이다. 
+ - DispatcherServlet도 부모 클래스에서 HttpServlet을 상속 받아서 사용하고, 서블릿으로 동작한다. 
+ - DispatcherServlet -< FrameworkServlet -> HttpServletBean -> HttpServlet
+
+11. Model이란 무엇인가?
+ - Controller에서 데이터를 Model에 담는다.
+ - view는 Model에 담겨있는 데이터만 쏙쏙 골라서 화면에 바인딩해준다.
+ - Model 객체는 컨트롤러에서 데이터를 생성해 이를 view에 전달하는 역할을 한다. 
+ - HashMap의 형태를 갖고 있고, key와 value값을 저장한다. 
+ - Servlet의 request.setAttribute()와 비슷한 역할을 한다. 
+
+12. ModelAndView
+ - model에서 view영역이 좀 더 확장된 형태이다.
+ - Model과 View를 동시에 설정이 가능하며 컨트롤러는 ModelAndView 객체만 리턴하지만, Model과 View가 모두 리턴 가능하다.
+ - addObject("key", value);
+
+13. Model vs ModelAndView
+ - Model : 데이터만 저장
+ - ModelAndView : 데이터와 이동하고자 하는 View Page를 같이 저장
+
+14. controller의 parameter
+
+15. @RequestMapping
+ - @RequestMapping 어노테이션은 활용이 매우 유연하고, 실용적인 컨트롤러를 만들 수 있다.
+ - 해당 URL이 호출되면 이 메서드가 호출된다.
+   (메서드의 이름은 임의로 짓고, 보통은 어노테이션을 기반으로 동작한다.)
+
+16. 일반적인 웹 애플리케이션 계층 구조
+ - 컨트롤러
+	-> 웹 MVC의 컨트롤러 역할
+ - 서비스
+	-> 핵심 비즈니스 로직을 구현
+ - 레파지토리
+	-> 데이터베이스에 접근, 도메인 객체를 DB에 저장하고 관리
+ - 도메인
+	-> 비즈니스 도메인 객체
+	 ex) 회원, 주문, 쿠폰
+
+17. Service
+ - 서비스 레이어 단에서 세분화된 비즈니스 로직을 처리하는 객체
+ - 서비스는 비즈니스 로직이 들어가는 부분
+ - Controller가 Request를 받으면 적절한 Service에 전달하고, 전달받은 Service는 비즈니스 로직을 처리한다.
+ - DAO로 데이터베이스를 접근하고 DTO로 데이터를 전달받은 다음, 적절한 처리를 하여 반환한다.
+
+18. 스프링 컨테이너란?
+ - 스프링 컨테이너는 자바 객체의 생명 주기를 관리하며, 생성된 자바 객체들에게 추가적인 기능을 제공하는 역할을 한다. 
+ - 여기서 말하는 자바 객체를 스프링에서는 빈(Bean)이라고 부른다. 
+ - 개발자는 객체를 생성하고 소멸할 수 있는데, 스프링 컨테이너가 이 역할을 대신해 준다.
+ - 즉, 제어의 흐름을 외부에서 관리하는 것.
+ - 또한, 객체들 간의 의존 관계를 스프링 컨테이너가 런타임 과정에서 알아서 만들어 준다. 
+ - 스프링은 실행 시, 객체들을 담고 있는 Container가 있다. 
